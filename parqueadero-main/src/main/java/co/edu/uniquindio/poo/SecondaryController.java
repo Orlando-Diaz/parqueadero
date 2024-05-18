@@ -3,6 +3,9 @@ package co.edu.uniquindio.poo;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.time.LocalDateTime;
+
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -114,50 +117,53 @@ public class SecondaryController implements Initializable {
         txtArea.setText("COMPROBANTE :" + "\n " + nombre + "\n" + cedula + "\n" + tipoMoto + "\n" + placa + "\n" + 
         velocidaMaxima + "\n" + modeloVehiculo + "\n"+ totalPagar);
 
-        System.out.println(nombre);
-        System.out.println(cedula);
-        System.out.println(tipoMoto);
-        System.out.println(placa);
-        System.out.println(velocidaMaxima);
-        System.out.println(modeloVehiculo);
-        System.out.println("debe pagar : " + totalPagar);
 
     }
+
 
     @FXML
     void acccion_registrarCarro(ActionEvent event) throws IOException {
 
         tarifaCarro = 2000;
-
+        //ASIGNACION DE NOMBRE Y CEDULA , SEGUN LA INFORMACION QUE SE COLOCA EN LOS CAMPOS 
         String nombre = txt_nombre.getText();
         String cedula = txt_cedula.getText();
         // CREACION DEL PROPIETARIO DEL CARRO
         Propietario p2 = new Propietario(nombre, cedula, null);
 
+        //ASIGNACION DE PLACA Y MODELO , SEGUN LA INFORMACION QUE SE COLOCA EN LOS CAMPOS 
         String placaCarro = txt_placaCarro.getText();
         String modeloCarro = txt_modeloCarro.getText();
         // CREACION DEL CARRO
-        Carro c1 = new Carro(placaCarro, modeloCarro, null);
+        Carro c1 = new Carro(placaCarro, modeloCarro, p2);
 
         int tiempoDeUso = Integer.parseInt(txt_tiempoDeUso.getText());
 
+        //TOTAL A PAGAR , CALCULO ENTRE LA TARIFA DE CARRO Y EL TIEMPO QUE USARA EL PARQUEADERO
         double totalPagar = tarifaCarro * tiempoDeUso;
 
+        //USO DEL TEXTFIELAREA PARA CARGAR LOS DATOS RECIEN AGREGADOS
         txtArea.setText("COMPROBANTE :" + "\n " + nombre + "\n" + cedula + "\n" + "\n" + placaCarro + "\n" + 
          "\n" + modeloCarro + "\n"+ totalPagar);
 
-        System.out.println(nombre);
-        System.out.println(cedula);
-        System.out.println(placaCarro);
-        System.out.println(modeloCarro);
-        System.out.println("Total a Pagar: " + totalPagar);
+         //CREACION DE EL REGISTRO DE CARRO
+         Registro registro = new Registro(c1, totalPagar, 2, LocalDateTime.now(), p2.getIdentificacion());
 
+        //CREACION DEL PUESTO 
+        // Puesto puesto = new Puesto(Math.random() * Primary.filas , false, registro);
+
+
+
+         
+
+    
     }
 
     // METODO SOBREESCRITO DE LA IMPLEMENTACION DE LA CLASE INITIALIZABLE
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 
+        //INICIALIZACION DEL COMBOBOX CON LOS DOS TIPOS DE MOTOS DE LA CLASE "TIPOMOTO" 
         ObservableList<TipoMoto> list = FXCollections.observableArrayList(TipoMoto.values());
         combo_tipoMoto.setItems(list);
     }
@@ -165,6 +171,8 @@ public class SecondaryController implements Initializable {
     @FXML
     void accion_actualizarprecios(ActionEvent event) {
 
+
+        
     }
 
 }

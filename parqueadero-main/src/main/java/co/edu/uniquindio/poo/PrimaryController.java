@@ -11,6 +11,9 @@ import javafx.scene.control.TextField;
 
 public class PrimaryController {
 
+    int filas;
+    int columnas;
+
     @FXML
     private Button boton_crearParqueadero;
 
@@ -20,17 +23,24 @@ public class PrimaryController {
     @FXML
     private TextField txt_filas;
 
+    private Puesto[][] parqueadero;
+
     @FXML
     void accion_crearParqueadero(ActionEvent event) throws IOException {
-
+        //APP.SETROOT PARA CARGAR LA SEGUNDA VISTA 
         App.setRoot("secondary");
-        int filas;
-        int columnas;
 
+        //SE OBTIENEN LAS FILAS Y COLUMNAS PARA CREAR EL PARQUEADERO 
         filas = Integer.parseInt(txt_filas.getText());
         columnas = Integer.parseInt(txt_columnas.getText());
-        Puesto parqueadero1[][] = new Puesto[filas][columnas];
+        parqueadero = new Puesto[filas][columnas];
         System.out.println("parqueadero creado de " + filas + "x" + columnas);
+    }
+
+    
+
+    public void agregarPuestoCarro(Puesto puesto){
+
     }
 
 }

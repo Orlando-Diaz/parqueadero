@@ -1,37 +1,59 @@
 package co.edu.uniquindio.poo;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 public class Registro {
    
     private Collection<Puesto> puestos;
-    private Vehiculo vehiculo;
+    private Carro carro;
+    private Moto moto;
     private double ingresos;
     private int puestoOcupado;
-    private LocalDate horaIngreso;
+    private LocalDateTime horaIngreso;
     private String idPropietario;
-    public Registro(Collection<Puesto> puestos, Vehiculo vehiculo, double ingresos, int puestoOcupado,
-            LocalDate horaIngreso, String idPropietario) {
+
+    //CONSTRUCTOR 
+    public Registro(Collection<Puesto> puestos, Carro carro , Moto moto, double ingresos, int puestoOcupado,
+            LocalDateTime horaIngreso, String idPropietario) {
         this.puestos = puestos;
-        this.vehiculo = vehiculo;
+        this.carro = carro;
+        this.moto = moto;
         this.ingresos = ingresos;
         this.puestoOcupado = puestoOcupado;
         this.horaIngreso = horaIngreso;
         this.idPropietario = idPropietario;
     }
+
+    //CONSTRUCTOR PARA HACER UN REGISTRO DE UNA MOTO
+    public Registro(Moto moto, double ingresos, int puestoOcupado, LocalDateTime horaIngreso, String idPropietario) {
+        this.moto = moto;
+        this.ingresos = ingresos;
+        this.puestoOcupado = puestoOcupado;
+        this.horaIngreso = horaIngreso;
+        this.idPropietario = idPropietario;
+    }
+
+    //CONSTRUCTOR PARA HACER UN REGISTRO DE UN CARRO
+    public Registro(Carro carro, double ingresos, int puestoOcupado, LocalDateTime horaIngreso, String idPropietario) {
+        this.carro = carro;
+        this.ingresos = ingresos;
+        this.puestoOcupado = puestoOcupado;
+        this.horaIngreso = horaIngreso;
+        this.idPropietario = idPropietario;
+    }
+
+
+    //GETTERS Y SETTERS
     public Collection<Puesto> getPuestos() {
         return puestos;
     }
+
     public void setPuestos(Collection<Puesto> puestos) {
         this.puestos = puestos;
     }
-    public Vehiculo getVehiculo() {
-        return vehiculo;
-    }
-    public void setVehiculo(Vehiculo vehiculo) {
-        this.vehiculo = vehiculo;
-    }
+    
     public double getIngresos() {
         return ingresos;
     }
@@ -44,10 +66,10 @@ public class Registro {
     public void setPuestoOcupado(int puestoOcupado) {
         this.puestoOcupado = puestoOcupado;
     }
-    public LocalDate getHoraIngreso() {
+    public LocalDateTime getHoraIngreso() {
         return horaIngreso;
     }
-    public void setHoraIngreso(LocalDate horaIngreso) {
+    public void setHoraIngreso(LocalDateTime horaIngreso) {
         this.horaIngreso = horaIngreso;
     }
     public String getIdPropietario() {
@@ -56,5 +78,18 @@ public class Registro {
     public void setIdPropietario(String idPropietario) {
         this.idPropietario = idPropietario;
     }
+    public Carro getCarro() {
+        return carro;
+    }
+    public void setCarro(Carro carro) {
+        this.carro = carro;
+    }
+    public Moto getMoto() {
+        return moto;
+    }
+    public void setMoto(Moto moto) {
+        this.moto = moto;
+    }
+    
    
 }
