@@ -10,6 +10,14 @@ public class Puesto {
         this.disponibilidad = disponibilidad;
         this.registro = registro;
     }
+
+    private boolean ocupado;
+    private Vehiculo vehiculo;
+
+    public boolean isOcupado() {
+        return ocupado;
+    }
+
     public int getNumeroPuesto() {
         return numeroPuesto;
     }
@@ -29,5 +37,18 @@ public class Puesto {
         this.registro = registro;
     }
 
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
+    }
+
+    public void setOcupado(boolean ocupado) {
+        this.ocupado = ocupado;
+    }
+
+    
     
 }

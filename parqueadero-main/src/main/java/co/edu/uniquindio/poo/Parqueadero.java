@@ -1,5 +1,6 @@
 package co.edu.uniquindio.poo;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -8,7 +9,6 @@ public class Parqueadero {
     
     private Puesto [][] puestos ;
     private Collection<Registro> registros;
-
     private Collection<Moto> listaMotos;
     private Collection<Carro> listaCarros;
     private Collection<Vehiculo> vehiculos;
@@ -22,7 +22,10 @@ public class Parqueadero {
         this.vehiculos = vehiculos;
         this.puestos = puestos;
         this.registros = registros;
+        this.listaCarros = new ArrayList<>(); // Inicializar la lista de carros
+        this.listaMotos = new ArrayList<>(); // Inicializar la lista de motos
     }
+
 
     //CONSTRUCTOR VACIO 
     public Parqueadero() {
@@ -85,5 +88,7 @@ public class Parqueadero {
             System.out.println(listaMotos); // Imprime cada objeto moto en la colección
         }
     }
+
+    
 
 }
