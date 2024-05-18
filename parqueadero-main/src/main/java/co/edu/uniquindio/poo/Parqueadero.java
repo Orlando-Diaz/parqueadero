@@ -6,89 +6,143 @@ import java.util.Collection;
 
 public class Parqueadero {
     private String nombre;
-    
-    private Puesto [][] puestos ;
-    private Collection<Registro> registros;
-    private Collection<Moto> listaMotos;
-    private Collection<Carro> listaCarros;
-    private Collection<Vehiculo> vehiculos;
+
+    private Puesto[][] puestos;
+    private Collection<Registro> listaRegistros = new ArrayList<>();
+    private Collection<Moto> listaMotos = new ArrayList<>();
+    private Collection<Carro> listaCarros = new ArrayList<>();
+    private Collection<Vehiculo> vehiculos = new ArrayList<>();
 
     private Double tarifaHora;
-    
 
     public Parqueadero(String nombre, Collection<Vehiculo> vehiculos, Puesto[][] puestos,
-            Collection<Registro> registros) {
+            Collection<Registro> listaRegistros) {
         this.nombre = nombre;
         this.vehiculos = vehiculos;
         this.puestos = puestos;
-        this.registros = registros;
+        this.listaRegistros = listaRegistros;
         this.listaCarros = new ArrayList<>(); // Inicializar la lista de carros
         this.listaMotos = new ArrayList<>(); // Inicializar la lista de motos
     }
 
-
-    //CONSTRUCTOR VACIO 
+    // CONSTRUCTOR VACIO
     public Parqueadero() {
     }
-
 
     public String getNombre() {
         return nombre;
     }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
     public Collection<Vehiculo> getVehiculos() {
         return vehiculos;
     }
+
     public void setVehiculos(Collection<Vehiculo> vehiculos) {
         this.vehiculos = vehiculos;
     }
+
     public Puesto[][] getPuestos() {
         return puestos;
     }
+
     public void setPuestos(Puesto[][] puestos) {
         this.puestos = puestos;
     }
+
     public Collection<Registro> getRegistros() {
-        return registros;
+        return listaRegistros;
     }
-    public void setRegistros(Collection<Registro> registros) {
-        this.registros = registros;
+
+    public void setRegistros(Collection<Registro> listaRegistros) {
+        this.listaRegistros = listaRegistros;
     }
-    
-    @Override
-    public String toString() {
-        return "Parqueadero [nombre=" + nombre + ", vehiculos=" + vehiculos + ", puestos=" + Arrays.toString(puestos)
-                + ", registros=" + registros + ", tarifaHora=" + tarifaHora + "]";
-    }
+
     public Double getTarifaHora() {
         return tarifaHora;
     }
+
     public void setTarifaHora(Double tarifaHora) {
         this.tarifaHora = tarifaHora;
-    } 
+    }
 
+
+
+
+    //METODO PARA AGREGAR CARROS A LA LISTA
     public void agregarCarro(Carro carro) {
         listaCarros.add(carro); // Agrega el objeto de tipo Carro a la colección listaCarros
     }
 
+    //METODO PARA AGREGAR MOTOS A LA LISTA
     public void agregarMoto(Moto moto) {
         listaMotos.add(moto); // Agrega el objeto de tipo moto a la colección listaCarros
     }
 
+    //METODO PARA AGREGAR UN REGISTRO A LA LISTA DE REGISTROS
+    public void agregarRegistros(Registro registro){
+        listaRegistros.add(registro);
+    }
+
+    //IMPRIME LOS REGISTROS
+    public void imprimirRegistros(){
+        System.out.println("Registros actuales: ");
+        for (Registro registro : listaRegistros) {
+            System.out.println("");
+            System.out.println(registro); // Imprime cada objeto registro en la colección
+        }
+    }
+
+    //METODO PARA IMPRIMIR LA LISTA DE CARROS 
     public void imprimirListaCarros() {
+        System.out.println("Carros actuales :");
         for (Carro carro : listaCarros) {
+            System.out.println("");
             System.out.println(carro); // Imprime cada objeto Carro en la colección
         }
     }
 
+    //METODO PARA IMPRIMIR LA LISTA DE MOTOS 
     public void imprimirListaMotos() {
+        System.out.println("Motos actuales : ");
         for (Moto moto : listaMotos) {
+            System.out.println("");
             System.out.println(listaMotos); // Imprime cada objeto moto en la colección
         }
     }
 
+    //MOSTRAR LOS INGRESOS GENERADOS POR CARROS
+    public double mostrarIngresosCarros(){
+
+        double totalPagar =0;
+
+        for (Registro registro : listaRegistros) {
+            totalPagar += registro.getIngresosCarros();
+        }
     
+        return totalPagar;
+    }
+
+    //MOSTRAR LOS INGRESOS GENERADOS POR MOTOS
+    public double mostrarIngresosMotos(){
+
+        double totalPagar =0;
+
+        for (Registro registro : listaRegistros) {
+            totalPagar += registro.getIngresosMotos();
+        }
+        return totalPagar;
+
+        
+    }
+
+    
+    
+
+
+
 
 }

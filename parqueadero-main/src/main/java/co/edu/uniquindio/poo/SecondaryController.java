@@ -69,6 +69,9 @@ public class SecondaryController implements Initializable {
     @FXML
     private TextArea txtArea;
 
+    @FXML
+    private Button boton_RevisarIngresos;
+
     // METODO PARA RECIBIR LAS 3 TARIFAS DE PRIMARYCONTROLLER
     public double recibir_tarifas(double t1, double t2, TipoMoto tipo, int tiempouso) {
 
@@ -105,6 +108,9 @@ public class SecondaryController implements Initializable {
 
         Moto m1 = new Moto(placa, modeloVehiculo, p1, velocidaMaxima);
 
+        par.agregarMoto(m1);
+        par.imprimirListaMotos();
+
         int tiempoDeUso = Integer.parseInt(txt_tiempoDeUso.getText());
 
         if (tipoMoto.equals(TipoMoto.CLASICA)) {
@@ -117,6 +123,11 @@ public class SecondaryController implements Initializable {
         txtArea.setText("COMPROBANTE :" + "\n " + nombre + "\n" + cedula + "\n" + tipoMoto + "\n" + placa + "\n" + 
         velocidaMaxima + "\n" + modeloVehiculo + "\n"+ totalPagar);
 
+        //CREACION DEL REGISTRO DE UNA MOTO
+        Registro registro = new Registro(m1, totalPagar, 3, LocalDateTime.now(), p1.getIdentificacion());
+        //AGREGO EL REGISTRO A LA LISTA EN PARQUEADERO
+        par.agregarRegistros(registro);
+        par.imprimirRegistros();
 
     }
 
@@ -136,6 +147,8 @@ public class SecondaryController implements Initializable {
         String modeloCarro = txt_modeloCarro.getText();
         // CREACION DEL CARRO
         Carro c1 = new Carro(placaCarro, modeloCarro, p2);
+        par.agregarCarro(c1);
+        par.imprimirListaCarros();
 
         int tiempoDeUso = Integer.parseInt(txt_tiempoDeUso.getText());
 
@@ -143,19 +156,18 @@ public class SecondaryController implements Initializable {
         double totalPagar = tarifaCarro * tiempoDeUso;
 
         //USO DEL TEXTFIELAREA PARA CARGAR LOS DATOS RECIEN AGREGADOS
-        txtArea.setText("COMPROBANTE :" + "\n " + nombre + "\n" + cedula + "\n" + "\n" + placaCarro + "\n" + 
-         "\n" + modeloCarro + "\n"+ totalPagar);
+        txtArea.setText("COMPROBANTE :" + "\n " +nombre+ "\n" +cedula+ "\n" + "\n" +placaCarro+ "\n" + 
+         "\n" +modeloCarro+ "\n"+totalPagar);
 
          //CREACION DE EL REGISTRO DE CARRO
          Registro registro = new Registro(c1, totalPagar, 2, LocalDateTime.now(), p2.getIdentificacion());
+         //AGREGO EL REGISTRO A LA LISTA EN PARQUEADERO
+         par.agregarRegistros(registro);
+         par.imprimirRegistros();
+
+
 
         //CREACION DEL PUESTO 
-        // Puesto puesto = new Puesto(Math.random() * Primary.filas , false, registro);
-
-
-
-         
-
     
     }
 
@@ -170,9 +182,22 @@ public class SecondaryController implements Initializable {
 
     @FXML
     void accion_actualizarprecios(ActionEvent event) {
+    }
 
 
+    @FXML
+    void accion_RevisarIngresos(ActionEvent event) {
+
+        String cadenaIngresosTotales = "el total recaudado es : ";
+        String cadenaIngresosMotos = "el total recaudado con motos es :";
+        String cadenaIngresosCarros = "el total recaudado con carros es : ";
         
+        double totalMotos =  par.mostrarIngresosMotos();
+        double totalCarros = par.mostrarIngresosCarros();
+        double total = totalCarros + totalMotos;
+        
+        txtArea.setText(cadenaIngresosTotales + total + " \n " + cadenaIngresosMotos + totalMotos + 
+        " \n " + cadenaIngresosCarros + totalCarros);
     }
 
 }

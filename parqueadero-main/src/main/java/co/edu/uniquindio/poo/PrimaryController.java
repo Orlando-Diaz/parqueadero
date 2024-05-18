@@ -23,7 +23,17 @@ public class PrimaryController {
     @FXML
     private TextField txt_filas;
 
-    private Puesto[][] parqueadero;
+    private Puesto[][] parqueadero ;
+
+    
+    //CONSTRUCTOR
+    public PrimaryController(Puesto[][] parqueadero) {
+        this.parqueadero = parqueadero;
+    }
+    
+    //CONSTRUCTOR VACIO
+    public PrimaryController() {
+    }
 
     @FXML
     void accion_crearParqueadero(ActionEvent event) throws IOException {
