@@ -2,12 +2,10 @@ package co.edu.uniquindio.poo;
 
 public class Puesto {
     private int numeroPuesto;
-    private boolean disponibilidad;
     private Registro registro;
 
-    public Puesto(int numeroPuesto, boolean disponibilidad, Registro registro) {
+    public Puesto(int numeroPuesto, Registro registro) {
         this.numeroPuesto = numeroPuesto;
-        this.disponibilidad = disponibilidad;
         this.registro = registro;
     }
 
@@ -24,14 +22,6 @@ public class Puesto {
 
     public void setNumeroPuesto(int numeroPuesto) {
         this.numeroPuesto = numeroPuesto;
-    }
-
-    public boolean isDisponibilidad() {
-        return disponibilidad;
-    }
-
-    public void setDisponibilidad(boolean disponibilidad) {
-        this.disponibilidad = disponibilidad;
     }
 
     public Registro getRegistro() {

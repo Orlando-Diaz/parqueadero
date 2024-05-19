@@ -1,13 +1,14 @@
 package co.edu.uniquindio.poo;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
 public class Parqueadero {
     private String nombre;
+    Puesto[][] parqueadero = new Puesto[20][20];
 
-    private Puesto[][] puestos;
     private Collection<Registro> listaRegistros = new ArrayList<>();
     private Collection<Moto> listaMotos = new ArrayList<>();
     private Collection<Carro> listaCarros = new ArrayList<>();
@@ -15,11 +16,11 @@ public class Parqueadero {
 
     private Double tarifaHora;
 
-    public Parqueadero(String nombre, Collection<Vehiculo> vehiculos, Puesto[][] puestos,
+    public Parqueadero(String nombre, Collection<Vehiculo> vehiculos, Puesto[][] parqueadero,
             Collection<Registro> listaRegistros) {
         this.nombre = nombre;
         this.vehiculos = vehiculos;
-        this.puestos = puestos;
+        //this.parqueadero = parqueadero;
         this.listaRegistros = listaRegistros;
         this.listaCarros = new ArrayList<>(); // Inicializar la lista de carros
         this.listaMotos = new ArrayList<>(); // Inicializar la lista de motos
@@ -43,14 +44,6 @@ public class Parqueadero {
 
     public void setVehiculos(Collection<Vehiculo> vehiculos) {
         this.vehiculos = vehiculos;
-    }
-
-    public Puesto[][] getPuestos() {
-        return puestos;
-    }
-
-    public void setPuestos(Puesto[][] puestos) {
-        this.puestos = puestos;
     }
 
     public Collection<Registro> getRegistros() {
@@ -90,11 +83,30 @@ public class Parqueadero {
     //IMPRIME LOS REGISTROS
     public String imprimirRegistros(){
         String cadena = " \n ";
+        /*
+         * Moto moto, double ingresosMotos, int puestoOcupado, LocalDateTime horaIngreso, String idPropietario
+         */
+        Moto moto;
+        Carro carro;
+        double ingresosTotales;
+        double ingresosMotos;
+        double ingresosCarros;
+        int puesto;
+        String idPropi;
+
+        System.out.println("-----------------------------------------------------------------------------");
         System.out.println("Registros actuales: ");
         for (Registro registro : listaRegistros) {
-            cadena += registro;
+            moto = registro.getMoto();
+            carro = registro.getCarro();
+            ingresosTotales = registro.getIngresos();
+            ingresosMotos = registro.getIngresosMotos();
+            ingresosCarros = registro.getIngresosCarros();
+            puesto = registro.getPuestoOcupado();
+            idPropi = registro.getIdPropietario();
             System.out.println("\n");
-            System.out.println(registro); // Imprime cada objeto registro en la colección
+            System.out.println(moto  + "\n" + carro + "\n" + ingresosTotales + "\n" + ingresosMotos + "\n" +  ingresosCarros + 
+            "\n" + puesto + "\n" + idPropi + "\n" + LocalDateTime.now()); // Imprime cada objeto registro en la colección
         }
         return cadena;
     }
@@ -113,7 +125,7 @@ public class Parqueadero {
         System.out.println("-----Motos actuales : ------");
         for (Moto moto : listaMotos) {
             System.out.println("");
-            System.out.println(listaMotos); // Imprime cada objeto moto en la colección
+            System.out.println(moto); // Imprime cada objeto moto en la colección
         }
     }
 
@@ -123,6 +135,7 @@ public class Parqueadero {
         double totalPagar =0;
 
         for (Registro registro : listaRegistros) {
+            
             totalPagar += registro.getIngresosCarros();
         }
     
@@ -139,12 +152,24 @@ public class Parqueadero {
         }
         return totalPagar;
 
-        
     }
 
-    
-    
-
+    public void agregarRegistro(Puesto puesto, int filas, int columnas) {
+        for (int i = filas; i < parqueadero.length; i++) {
+            for (int j = columnas; j < parqueadero[i].length; j++) {
+                if (parqueadero[filas][columnas] == null) {
+                    parqueadero[filas][columnas] = puesto;
+                    System.out.println("Puesto agregado con éxito en la posición [" + i + "][" + j + "]");
+                    return; // Salir del método después de agregar el puesto
+                } else {
+                    System.out.println("El puesto está ocupado en la posición [" + i + "][" + j + "]");
+                    
+                }
+                break;
+            }
+            break;
+        }
+    }
 
 
 

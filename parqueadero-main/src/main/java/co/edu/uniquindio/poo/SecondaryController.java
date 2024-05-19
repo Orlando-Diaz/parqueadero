@@ -75,6 +75,12 @@ public class SecondaryController implements Initializable {
     @FXML
     private Button boton_De_Registros;
 
+    @FXML
+    private TextField txt_posicion_I;
+
+    @FXML
+    private TextField txt_posicion_J;
+
     // METODO PARA RECIBIR LAS 3 TARIFAS DE PRIMARYCONTROLLER
     public double recibir_tarifas(double t1, double t2, TipoMoto tipo, int tiempouso) {
 
@@ -96,6 +102,7 @@ public class SecondaryController implements Initializable {
     @FXML
     void accion_registrarMoto(ActionEvent event) throws IOException {
 
+        System.out.println("---------------------------------------------------------------------------------------");
         double totalPagar;
         tarifaMotoClasica = 1000;
         tarifaMotoHibrida = 1500;
@@ -125,17 +132,26 @@ public class SecondaryController implements Initializable {
         }
 
 
-        txtArea.setText("COMPROBANTE :" + "\n " + nombre + "\n" + cedula + "\n" + tipoMoto + "\n" + placa + "\n" + 
-        velocidaMaxima + "\n" + modeloVehiculo + "\n"+ totalPagar);
+        int posicion_i = Integer.parseInt(txt_posicion_I.getText());
+        int posicion_J = Integer.parseInt(txt_posicion_J.getText());
+
+        String auxi = posicion_i + "" + posicion_J;
+        int posicion = Integer.parseInt(auxi);
+
+
+
+        txtArea.setText("COMPROBANTE :" + "\n " + "Nombre usuario : " nombre + "\n" + cedula + "\n" + tipoMoto + "\n" + placa + "\n" + 
+        velocidaMaxima + "\n" + modeloVehiculo + "\n"+ totalPagar + "\n" + posicion);
 
         //CREACION DEL REGISTRO DE UNA MOTO
-        Registro registro = new Registro(m1, totalPagar, 3, LocalDateTime.now(), p1.getIdentificacion());
+        Registro registro = new Registro(m1, totalPagar, posicion, LocalDateTime.now(), p1.getIdentificacion());
         //AGREGO EL REGISTRO A LA LISTA EN PARQUEADERO
-        par.agregarRegistros(registro);
-        par.imprimirRegistros();
-        System.out.println(LocalDateTime.now());
 
-        primary.seleccionarPuestos();
+        Puesto puesto = new Puesto(posicion, registro);
+
+        par.agregarRegistro(puesto, posicion_i, posicion_J);
+
+    
 
     }
 
@@ -163,20 +179,26 @@ public class SecondaryController implements Initializable {
         //TOTAL A PAGAR , CALCULO ENTRE LA TARIFA DE CARRO Y EL TIEMPO QUE USARA EL PARQUEADERO
         double totalPagar = tarifaCarro * tiempoDeUso;
 
+        int posicion_i = Integer.parseInt(txt_posicion_I.getText());
+        int posicion_J = Integer.parseInt(txt_posicion_J.getText());
+
+        String auxi = posicion_i + "" + posicion_J;
+        int posicion = Integer.parseInt(auxi);
+
         //USO DEL TEXTFIELAREA PARA CARGAR LOS DATOS RECIEN AGREGADOS
-        txtArea.setText("COMPROBANTE :" + "\n " +nombre+ "\n" +cedula+ "\n" + "\n" +placaCarro+ "\n" + 
-         "\n" +modeloCarro+ "\n"+totalPagar);
+        txtArea.setText("COMPROBANTE :" + "\n " + nombre + "\n" + cedula + "\n" + "\n" + placaCarro + "\n" + 
+         "\n" + modeloCarro + "\n" + totalPagar + "\n" + posicion);
 
          //CREACION DE EL REGISTRO DE CARRO
-         Registro registro = new Registro(c1, totalPagar, 2, LocalDateTime.now(), p2.getIdentificacion());
+         Registro registro = new Registro(c1, totalPagar, posicion, LocalDateTime.now(), p2.getIdentificacion());
          //AGREGO EL REGISTRO A LA LISTA EN PARQUEADERO
          par.agregarRegistros(registro);
-         par.imprimirRegistros();
 
+         Puesto puesto = new Puesto(posicion, registro);
 
+         par.agregarRegistro(puesto, posicion_i, posicion_J);
+        
 
-        //CREACION DEL PUESTO 
-    
     }
 
     // METODO SOBREESCRITO DE LA IMPLEMENTACION DE LA CLASE INITIALIZABLE

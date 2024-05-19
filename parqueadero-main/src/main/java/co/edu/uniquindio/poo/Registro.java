@@ -1,6 +1,5 @@
 package co.edu.uniquindio.poo;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 
@@ -107,6 +106,11 @@ public class Registro {
 
     public void setIngresosCarros(double ingresosCarros) {
         this.ingresosCarros = ingresosCarros;
+    }
+
+    public char charAt(int i) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'charAt'");
     }
 
     
