@@ -140,8 +140,8 @@ public class SecondaryController implements Initializable {
 
 
 
-        txtArea.setText("COMPROBANTE :" + "\n " + "Nombre usuario : " nombre + "\n" + cedula + "\n" + tipoMoto + "\n" + placa + "\n" + 
-        velocidaMaxima + "\n" + modeloVehiculo + "\n"+ totalPagar + "\n" + posicion);
+        txtArea.setText("COMPROBANTE :" + "\n " + "Nombre propietario : " + nombre + "\n" + cedula + "\n" + tipoMoto + "\n" +
+         placa + "\n" + velocidaMaxima + "\n" + modeloVehiculo + "\n"+ totalPagar + "\n" + posicion);
 
         //CREACION DEL REGISTRO DE UNA MOTO
         Registro registro = new Registro(m1, totalPagar, posicion, LocalDateTime.now(), p1.getIdentificacion());
