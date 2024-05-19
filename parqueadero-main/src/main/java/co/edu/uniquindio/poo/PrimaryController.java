@@ -53,4 +53,15 @@ public class PrimaryController {
 
     }
 
+    public int seleccionarPuestos(){
+
+        int puesto1 = (int) Math.pow(filas, columnas);
+        int puesto2 = (int) Math.pow(filas, columnas);
+
+        System.out.println(puesto1);
+        System.out.println(puesto2);
+        return puesto1;
+
+    }
+
 }

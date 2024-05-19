@@ -72,6 +72,9 @@ public class SecondaryController implements Initializable {
     @FXML
     private Button boton_RevisarIngresos;
 
+    @FXML
+    private Button boton_De_Registros;
+
     // METODO PARA RECIBIR LAS 3 TARIFAS DE PRIMARYCONTROLLER
     public double recibir_tarifas(double t1, double t2, TipoMoto tipo, int tiempouso) {
 
@@ -128,6 +131,9 @@ public class SecondaryController implements Initializable {
         //AGREGO EL REGISTRO A LA LISTA EN PARQUEADERO
         par.agregarRegistros(registro);
         par.imprimirRegistros();
+        System.out.println(LocalDateTime.now());
+
+        primary.seleccionarPuestos();
 
     }
 
@@ -180,11 +186,14 @@ public class SecondaryController implements Initializable {
         combo_tipoMoto.setItems(list);
     }
 
+
     @FXML
     void accion_actualizarprecios(ActionEvent event) {
     }
 
 
+
+    //ACCION DEL BOTON PARA REVISAR LOS INGRESOS QUE LLEVA EL PARQUEADERO
     @FXML
     void accion_RevisarIngresos(ActionEvent event) {
 
@@ -198,6 +207,13 @@ public class SecondaryController implements Initializable {
         
         txtArea.setText(cadenaIngresosTotales + total + " \n " + cadenaIngresosMotos + totalMotos + 
         " \n " + cadenaIngresosCarros + totalCarros);
+    }
+
+    @FXML
+    void accion_mostrarRegistros(ActionEvent event) {
+
+        String cadena = par.imprimirRegistros();
+        txtArea.setText(cadena);
     }
 
 }

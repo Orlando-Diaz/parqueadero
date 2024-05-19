@@ -56,5 +56,6 @@
       <Button fx:id="boton_actualizarPrecios" layoutX="14.0" layoutY="402.0" mnemonicParsing="false" onAction="#accion_actualizarprecios" text="Actualizar tarifas" />
       <TextArea fx:id="txtArea" layoutX="530.0" layoutY="23.0" prefHeight="342.0" prefWidth="242.0" />
       <Button fx:id="boton_RevisarIngresos" layoutX="142.0" layoutY="402.0" mnemonicParsing="false" onAction="#accion_RevisarIngresos" text="Ingresos" />
+      <Button fx:id="boton_De_Registros" layoutX="234.0" layoutY="402.0" mnemonicParsing="false" onAction="#accion_mostrarRegistros" text="Registros" />
    </children>
 </Pane>

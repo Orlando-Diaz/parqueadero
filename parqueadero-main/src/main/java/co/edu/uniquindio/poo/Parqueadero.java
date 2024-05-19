@@ -88,12 +88,15 @@ public class Parqueadero {
     }
 
     //IMPRIME LOS REGISTROS
-    public void imprimirRegistros(){
+    public String imprimirRegistros(){
+        String cadena = " \n ";
         System.out.println("Registros actuales: ");
         for (Registro registro : listaRegistros) {
-            System.out.println("");
+            cadena += registro;
+            System.out.println("\n");
             System.out.println(registro); // Imprime cada objeto registro en la colección
         }
+        return cadena;
     }
 
     //METODO PARA IMPRIMIR LA LISTA DE CARROS 
@@ -107,7 +110,7 @@ public class Parqueadero {
 
     //METODO PARA IMPRIMIR LA LISTA DE MOTOS 
     public void imprimirListaMotos() {
-        System.out.println("Motos actuales : ");
+        System.out.println("-----Motos actuales : ------");
         for (Moto moto : listaMotos) {
             System.out.println("");
             System.out.println(listaMotos); // Imprime cada objeto moto en la colección
