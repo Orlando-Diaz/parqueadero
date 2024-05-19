@@ -99,6 +99,8 @@ public class SecondaryController implements Initializable {
         double totalPagar;
         tarifaMotoClasica = 1000;
         tarifaMotoHibrida = 1500;
+        int pos1 ;
+        int pos2;
 
         String nombre = txt_nombre.getText();
         String cedula = txt_cedula.getText();
