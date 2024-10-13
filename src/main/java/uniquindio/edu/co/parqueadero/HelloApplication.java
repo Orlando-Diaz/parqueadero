@@ -21,6 +21,7 @@ public class HelloApplication extends Application {
         launch();
         System.out.println("hola");
         System.out.println("hola 2 ");
+        System.out.println("hola 3 desde junior");
 
     }
 }
